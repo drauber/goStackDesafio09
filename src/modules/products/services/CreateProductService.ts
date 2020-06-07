@@ -1,6 +1,4 @@
-import Product, {
-  Product,
-} from '@modules/products/infra/typeorm/entities/Product';
+import Product from '@modules/products/infra/typeorm/entities/Product';
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
@@ -27,13 +25,13 @@ class CreateProductService {
       throw new AppError('Product already in database.');
     }
 
-    const Product = await this.productsRepository.create({
+    const product = await this.productsRepository.create({
       name,
       quantity,
       price,
     });
 
-    return Product;
+    return product;
   }
 }
 
