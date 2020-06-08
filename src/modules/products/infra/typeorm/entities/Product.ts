@@ -20,9 +20,13 @@ class Product {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ type: 'int' })
   quantity: number;
 
+  @OneToMany(() => OrdersProducts, ordersProducts => ordersProducts.product, {
+    cascade: ['insert'],
+    eager: true,
+  })
   order_products: OrdersProducts[];
 
   @CreateDateColumn()
